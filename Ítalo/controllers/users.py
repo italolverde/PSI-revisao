@@ -1,6 +1,6 @@
 from flask import render_template, Blueprint, url_for, request, flash, redirect
 from models.user import User
-from flask_login import LoginManager,login_required
+from flask_login import LoginManager,login_required, login_user
 import sqlite3
 
 
@@ -46,7 +46,7 @@ def login():
         conn = get_connection()
 
         user = conn.execute('SELECT * FROM users WHERE email = ?', (email))
-        
+        login_user(user)
         return url_for('index')
-
+    return render_template('login.html')
         
