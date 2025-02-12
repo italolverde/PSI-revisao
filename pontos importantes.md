@@ -68,7 +68,4 @@ current_user #--> Variável disponibilizada pela biblioteca, ela é o usuário a
 
 @login_required #--> Vem entre a definição da rota e a função da rota, serve para bloquear uma rota, tornando-a acessível apenas para usuários logados
 
-is_authenticated #--> Propriedade do current_user, retorna True caso tenha um usuário logado
-
-is_anonymous #--> O mesmo do is_authenticated, porém, com o resultado invertido, retorna True caso NÃO TENHA um usuário logado
 ```
