@@ -7,9 +7,9 @@
     <title>Document</title>
 </head>
 <body>
-    <a href="{{url_for('register')}}">REGISTRAR</a> | <a href="{{url_for('login')}}">LOGIN</a>
+    <a href="{{url_for('usuarios.register')}}">REGISTRAR</a> | <a href="{{url_for('usuarios.login')}}">LOGIN</a>
     {% if nome %}
-        | <a href="{{url_for('logout')}}">LOGOUT</a>
+        | <a href="{{url_for('usuarios.logout')}}">LOGOUT</a>
         <h3>Olá {{nome}}</h3>
     {% else %}
         <h3>Nenhum usuário ativo</h3>
