@@ -3,7 +3,7 @@ from flask_login import login_user, current_user, logout_user, login_required
 from database import Base, session #Importando do arquivo INIT da pasta database, por isso não preciso especificar arquivo
 from models.usuarios import Usuarios #importando classe Usuarios do arquivo models/usuarios
 
-usuarios_bp = Blueprint(name='usuarios',
+usuarios_bp = Blueprint(name='usuarios', #Valores explicados no arquivo mvc.md
                         import_name=__name__,
                         template_folder="templates",
                         url_prefix="/usuarios")
