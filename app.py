@@ -1,9 +1,13 @@
 from flask import Flask, request, render_template, url_for, redirect
 from flask_login import LoginManager, current_user
 from models.usuarios import Usuarios #Importando a CLASSE USUARIOS do arquivo models/user.py
-from database import Base, engine #Importando Base e Engine do arquivo init da pasta database, por isso não especifico arquivo
+from database import Base, engine, session #Importando Base e Engine do arquivo init da pasta database, por isso não especifico arquivo
 
 from controllers.usuarios import usuarios_bp #Pegando a blueprint das rotas de usuários do arquivo controllers/usuarios
+from controllers.livros import livros_bp
+from controllers.emprestimos import emprestimos_bp
+
+from models.emprestimos import Emprestimos
 
 app = Flask(__name__)
 
@@ -22,13 +26,18 @@ with app.app_context():
     Base.metadata.create_all(bind=engine) #Comando para criar as tabelas do banco
 
 app.register_blueprint(usuarios_bp)
+app.register_blueprint(livros_bp)
+app.register_blueprint(emprestimos_bp)
 
 @app.route('/')
 def index():
+
+    emprestimos = session.query(Emprestimos).all() #SELECT * FROM emprestimos || para exibir no index
+
     #current_user é uma variavel disponibilizada pelo flask_login para pegar o usuário atual estando logado ou não
     if current_user.is_authenticated: #current_user.is_authenticated: Verifica se você está logado e retorna True caso esteja.
-        return render_template('index.html', nome=current_user.nome)
+        return render_template('index.html', nome=current_user.nome, emprestimos = emprestimos)
     else: #Caso seja um usuário anônimo, ainda não logado pelo comando login_user():
-        return render_template('index.html')
+        return render_template('index.html', emprestimos = emprestimos)
     
 

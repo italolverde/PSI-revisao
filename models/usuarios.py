@@ -1,12 +1,15 @@
-from sqlalchemy.orm import Mapped, mapped_column
+from sqlalchemy.orm import Mapped, mapped_column, relationship
 from database import Base, session
 from flask_login import UserMixin
 
 class Usuarios(Base, UserMixin): #Herda Base (sqlalchemy) e UserMixin (Flask-Login) para servir de usuário ao mesmo tempo que é armazenado no banco
     __tablename__ = 'usuarios' #Usuários serão armazenados na tabela "usuarios" do banco
+
     id:Mapped[int] = mapped_column(primary_key=True)
     nome:Mapped[str]
     senha:Mapped[str]
+
+    emprestimos = relationship("Emprestimos", back_populates="usuario")
 
     @classmethod #Método de classe, apenas uma função, mas que roda pela classe ( Ex: Usuarios.find() )
     def find(cls, **kwargs): #cls é o mesmo de "self" para POO, porém, para classe, pois aqui não estamos especificando um objeto, mas sim toda a classe.

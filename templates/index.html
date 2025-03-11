@@ -9,10 +9,23 @@
 <body>
     <a href="{{url_for('usuarios.register')}}">REGISTRAR</a> | <a href="{{url_for('usuarios.login')}}">LOGIN</a>
     {% if nome %}
-        | <a href="{{url_for('usuarios.logout')}}">LOGOUT</a>
+        <a href="{{url_for('usuarios.logout')}}">LOGOUT</a> |
+        <a href="{{url_for('livros.cadastro_livro')}}">Cadastrar Livros</a> |
+        <a href="{{url_for('emprestimos.cadastro')}}">Empréstimo</a>
+
         <h3>Olá {{nome}}</h3>
     {% else %}
         <h3>Nenhum usuário ativo</h3>
     {% endif %}
+
+    <h2>Empréstimos:</h2>
+    <ul>
+    {% for emprestimo in emprestimos %}
+
+        <h4>Usuário: {{emprestimo.usuario.nome}} | Livro: {{emprestimo.livro.nome}}</h4>
+
+    {% endfor %}
+    </ul>
+
 </body>
 </html>
