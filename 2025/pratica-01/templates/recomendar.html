@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recomendações</title>
+</head>
+<body>
+    <h1>Recomendações de Filmes</h1>
+    <p>Selecione um gênero para ver recomendações:</p>
+    <form action="/recomendar" method="get">
+        <select name="genero" id="genero">
+            <option value="acao" {% if genero == 'acao' %}selected{% endif %}>Ação</option>
+            <option value="comedia" {% if genero == 'comedia' %}selected{% endif %}>Comédia</option>
+            <option value="drama" {% if genero == 'drama' %}selected{% endif %}>Drama</option>
+            <option value="ficcao" {% if genero == 'ficcao' %}selected{% endif %}>Ficção</option>
+            <option value="terror" {% if genero == 'terror' %}selected{% endif %}>Terror</option>
+        </select>
+        <button type="submit">Buscar</button>
+    </form>
+    {% if filmes %}
+    <h3>Recomendações para o gênero {{genero}}:</h1>
+    <ul>
+        {% for filme in filmes %}
+            <li>{{ filme }}</li>
+        {% endfor %}
+    </ul>
+    {% else %}
+        <h3>Nenhum genero foi informado</h3>
+        <p>Selecione um gênero para ver recomendações</p>
+    {% endif %}
+</body>
+</html>

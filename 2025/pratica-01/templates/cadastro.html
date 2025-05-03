@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>cadastro</title>
+</head>
+<body>
+    <h1>Cadastro de preferências</h1>
+    <form action="{{ url_for('cadastro') }}" method="POST">
+
+        <input type="text" name="nome" placeholder="Nome do usuário" required>
+
+        <select name="genero_favorito">
+            <option value="acao">Ação</option>
+            <option value="comedia">Comédia</option>
+            <option value="drama">Drama</option>
+            <option value="ficcao">Ficção</option>
+            <option value="terror">Terror</option>
+        </select>
+
+        <label for="emails">Receber notificações por email?</label>
+        <input type="checkbox" name="notificacoes">
+
+        <button type="submit">Cadastrar</button>
+    </form>
+</body>
+</html>

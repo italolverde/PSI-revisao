@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Preferências</title>
+</head>
+<body>
+    {% if nome %}
+    
+        <h1>Preferencias do usuário {{nome}}:</h1>
+
+        <p>{{preferencia}}</p>
+    
+    {% else %}
+        <p>Nenhuma preferência cadastrada.</p>
+        <p>Cadastre novas preferencias: </p> <a href="{{url_for('cadastro')}}">Cadastrar</a>
+    {% endif %}
+</body>
+</html>
