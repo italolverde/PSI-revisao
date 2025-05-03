@@ -44,8 +44,10 @@ def preferencias():
 
 @app.route('/recomendar')
 def recomendar():
+    #Pega a consulta "genero" da URL
     genero = request.args.get('genero')
 
+    #Criação da lista de filmes por gênero fixa
     filmes = {
         'acao': ['Mad Max: Estrada da Fúria', 'John Wick', 'Duro de Matar'],
         'comedia': ['Superbad', 'Apertem os Cintos... O Piloto Sumiu!', 'Os Caça-Fantasmas'],
@@ -53,6 +55,6 @@ def recomendar():
         'terror': ['O Exorcista', 'A Noite dos Mortos-Vivos', 'O Iluminado'],
         'ficcao': ['Blade Runner', 'A Origem', 'Matrix'],
     }
-    print(genero)
+
     return render_template("recomendar.html", genero=genero, filmes=filmes.get(genero, []))
 
