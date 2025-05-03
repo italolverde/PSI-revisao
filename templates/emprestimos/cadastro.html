@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro de Empréstimo</title>
+</head>
+<body>
+    <h2>Cadastro de Empréstimo</h2>
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category, message in messages %}
+                <div class="{{ category }}">{{ message }}</div>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+    {% if not livros %}
+        <h1>Não existem livros cadastrados</h1>
+    {% else %}
+    <ul>
+        {% for livro in livros %}
+            <li>
+                {{ livro.nome }}
+                <a href="{{ url_for('emprestimos.emprestar_livro', livro_id=livro.id) }}">
+                    <button>Emprestar</button>
+                </a>
+            </li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+    <a href="{{ url_for('index') }}">Voltar</a>
+</body>
+</html>
